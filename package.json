@@ -1,0 +1,25 @@
+{
+  "name": "saucedemo-practice",
+  "version": "1.0.0",
+  "description": "This repository documents how I'm learning UI test automation with Playwright and TypeScript. Each part of the work lands through its own pull request, the same way it would on a real project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:report": "npx playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radionce/saucedemo-practice.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/radionce/saucedemo-practice/issues"
+  },
+  "homepage": "https://github.com/radionce/saucedemo-practice#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6",
+    "dotenv": "^18.0.9"
+  }
+}
