@@ -1,0 +1,1 @@
+1. In "valid credentials land on the inventory page" test, the "await expect(page).toHaveURL('/inventory.html');" part do not have "\" in front of "." which can cause problems later but it works fine for now 
