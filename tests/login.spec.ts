@@ -1,9 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers';
 test('valid credentials land on the inventory page', async ({ page }) => {
-await page.goto('/');
-await page.getByTestId('username').fill('standard_user');
-await page.getByTestId('password').fill(process.env.SAUCE_PASSWORD);
-await page.getByTestId('login-button').click();
+await login(page);
 await expect(page).toHaveURL('/inventory.html');
 await expect(page.getByTestId('title')).toHaveText('Products');
 await expect(page.getByTestId('title')).toBeVisible();
