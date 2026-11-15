@@ -37,3 +37,29 @@ await expect(page.getByRole('alert')).toContainText('Username is required');
 await login(page, 'standard_user', '');
 await expect(page.getByRole('alert')).toContainText('Password is required');
 });
+
+test('logging out returns to login page', async ({ page }) => {
+    //logging out returns to login page 
+await login(page);
+await page.getByRole('button', { name: 'Open Menu' }).click();
+await page.getByTestId('logout-sidebar-link').click();
+await expect(page).toHaveURL('/');
+});
+
+test('inventory page is unreachable when logged out', async ({ page }) => {
+    //inventory page is unreachable when logged out
+await login(page);
+await page.getByRole('button', { name: 'Open Menu' }).click();
+await page.getByTestId('logout-sidebar-link').click();
+await page.goto('/inventory.html');
+await expect(page.getByRole('alert')).toContainText('You can only access \'/inventory.html\' when you are logged in');
+});
+
+test('cart page is unreachable when logged in', async ({ page }) => {
+    //cart page is unreachable when logged out
+await login(page);
+await page.getByRole('button', { name: 'Open Menu' }).click();
+await page.getByTestId('logout-sidebar-link').click();
+await page.goto('/cart.html');
+await expect(page.getByRole('alert')).toContainText('You can only access \'/cart.html\' when you are logged in');
+});
