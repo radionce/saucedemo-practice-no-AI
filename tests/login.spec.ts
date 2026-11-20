@@ -46,7 +46,7 @@ await page.getByTestId('logout-sidebar-link').click();
 await expect(page).toHaveURL('/');
 });
 
-test('inventory page is unreachable when logged out', async ({ page }) => {
+test('inventory page is unreachable after logged out', async ({ page }) => {
     //inventory page is unreachable when logged out
 await login(page);
 await page.getByRole('button', { name: 'Open Menu' }).click();
@@ -55,11 +55,14 @@ await page.goto('/inventory.html');
 await expect(page.getByRole('alert')).toContainText('You can only access \'/inventory.html\' when you are logged in');
 });
 
-test('cart page is unreachable when logged in', async ({ page }) => {
+test('inventory page is unreachable when logged out', async ({ page }) => {
+    //inventory page is unreachable when logged out
+await page.goto('/inventory.html');
+await expect(page.getByRole('alert')).toContainText('You can only access \'/inventory.html\' when you are logged in');
+});
+
+test('cart page is unreachable when logged out', async ({ page }) => {
     //cart page is unreachable when logged out
-await login(page);
-await page.getByRole('button', { name: 'Open Menu' }).click();
-await page.getByTestId('logout-sidebar-link').click();
 await page.goto('/cart.html');
 await expect(page.getByRole('alert')).toContainText('You can only access \'/cart.html\' when you are logged in');
 });
