@@ -54,3 +54,17 @@ await page.getByRole('button', { name: 'Remove' }).click();
 const CART_ITEMS = page.getByTestId('inventory-item');
 await expect(CART_ITEMS).toHaveCount(0);
 });
+
+test.fail('cart contents do not survive a logout', async ({ page }) => {
+    //cart contents is surviving a logout due to a bug in the application, this test is expected to fail. Should be fixed in the application.
+    //[TICKET_NUMBER] Bug report: Cart contents persist after logout
+await page.getByTestId('add-to-cart-sauce-labs-backpack').click();
+await page.getByRole('button', { name: 'Open Menu' }).click();
+await page.getByTestId('logout-sidebar-link').click();
+await expect(page).toHaveURL('/');
+await login(page);
+await page.getByTestId('shopping-cart-link').click();
+await expect(page).toHaveURL('/cart.html');
+const CART_ITEMS = page.getByTestId('inventory-item');
+await expect(CART_ITEMS).toHaveCount(0);
+});
